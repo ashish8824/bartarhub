@@ -90,3 +90,27 @@ export async function updateBarterStatus(id: string, status: BarterStatus) {
 
   return true;
 }
+
+// Get single barter by ID (with sender/receiver profile details)
+export async function getBarterById(id: string) {
+  const { data, error } = await supabase
+    .from("barters")
+    .select(
+      `
+      *,
+      sender_profile:users!barters_sender_id_fkey(username, avatar_url),
+      receiver_profile:users!barters_receiver_id_fkey(username, avatar_url),
+      requested_skill:skills!barters_requested_skill_id_fkey(title),
+      offered_skill:skills!barters_offered_skill_id_fkey(title)
+    `
+    )
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error("❌ Error in getBarterById:", error);
+    return null;
+  }
+
+  return data;
+}

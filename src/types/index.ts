@@ -13,15 +13,38 @@ export interface Barter {
   id: string;
   sender_id: string;
   receiver_id: string;
-  requested_skill_id: string;
   offered_skill_id: string | null;
-  status: BarterStatus;
+  requested_skill_id: string;
+  status: "pending" | "in_progress" | "completed" | "declined";
   message: string;
   created_at: string;
   updated_at: string;
-  // Optional populated fields
-  requested_skill?: Skill;
-  offered_skill?: Skill;
-  sender?: { username: string; avatar_url: string };
-  receiver?: { username: string; avatar_url: string };
+  sender_profile?: {
+    username: string;
+    avatar_url: string | null;
+  };
+  receiver_profile?: {
+    username: string;
+    avatar_url: string | null;
+  };
+}
+
+export interface Message {
+  id: string;
+  barter_id: string;
+  sender_id: string;
+  content: string;
+  sent_at: string;
+  sender_profile?: {
+    username: string;
+    avatar_url: string | null;
+  };
+}
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  username: string;
+  bio: string;
+  avatar_url: string;
 }
