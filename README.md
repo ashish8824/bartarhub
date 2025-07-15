@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 BarterHub
 
-## Getting Started
+**BarterHub** is a full-stack skill exchange platform where users can offer and request services from others in their local community — all without using money. Users can barter their skills, communicate in real-time, and leave reviews after a completed exchange.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📦 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🔐 **Authentication** (Sign up, Login, Password Recovery via Supabase Auth)
+- 📋 **Skill Management**: Add, update, and delete skills you offer or need
+- 🧾 **Skill Feed**: Browse other users’ skills (filtering your own out)
+- 💬 **Barter Requests**: Send and manage barter requests between users
+- 💡 **Chat**: Real-time messaging between barter participants
+- ✍️ **Reviews**: Leave feedback after completing a barter
+- 👤 **Profile Management**: Edit name, bio, and avatar
+- 🧭 **Dashboard**: View your skills, inbox, and profile in one place
+- ✅ **Route Protection** using Next.js Middleware
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Tech Stack
 
-## Learn More
+- **Framework**: [Next.js 14+](https://nextjs.org/) (App Router)
+- **Backend**: [Supabase](https://supabase.com/) (PostgreSQL + Auth + Storage + Realtime)
+- **Database**: PostgreSQL (via Supabase)
+- **Realtime**: Supabase Channels (WebSocket)
+- **Styling**: Tailwind CSS
+- **State Management**: React Context + Hooks
+- **Forms**: react-hook-form
+- **Icons**: Lucide
+- **Notifications**: react-hot-toast
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
