@@ -6,6 +6,7 @@ import { updateBarterStatus } from "@/services/barterService";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Barter } from "@/types";
+import { useRouter } from "next/navigation";
 
 export default function BarterPage() {
   const { user, loading: userLoading } = useUser();
@@ -16,6 +17,7 @@ export default function BarterPage() {
   const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
+  const router = useRouter();
 
   const { barters: inboxBarters, loading: inboxLoading } = useInboxBarters(
     user?.id || ""
@@ -196,10 +198,21 @@ export default function BarterPage() {
                   </>
                 )}
 
+                {barter?.status === "in_progress" && (
+                  <button
+                    onClick={() =>
+                      router.push(`/dashboard/review/${barter.id}`)
+                    }
+                    className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 mt-4"
+                  >
+                    Leave a Review
+                  </button>
+                )}
+
                 {/* View Barter Button (always shown) */}
                 <a
                   href={`/dashboard/barter/${barter.id}`}
-                  className="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700"
+                  className="bg-indigo-600 text-white px-4 pt-5 rounded text-sm hover:bg-indigo-700 inline-block"
                 >
                   View
                 </a>

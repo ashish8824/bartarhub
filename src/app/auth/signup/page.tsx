@@ -17,7 +17,7 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
 
   const handleSignUp = async () => {
-    if (!email || !password || !username) {
+    if (!email || !password) {
       toast.error("Please fill out all fields.");
       return;
     }

@@ -7,15 +7,18 @@ import ChatBubble from "@/components/ChatBubble";
 import { sendMessage } from "@/services/messageService";
 import { useEffect, useRef, useState } from "react";
 import { getBarterById } from "@/services/barterService";
-import { Barter } from "@/types";
+import { getReviewsByBarterId } from "@/services/reviewService";
 import BarterDetailCard from "@/components/BarterDetailCard";
+import { Barter, Review } from "@/types";
 
 export default function BarterChatPage() {
   const { barterId } = useParams();
   const { user } = useUser();
   const { messages, loading: chatLoading } = useChat(barterId as string);
+
   const [newMessage, setNewMessage] = useState("");
   const [barter, setBarter] = useState<Barter | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [loadingBarter, setLoadingBarter] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -24,9 +27,12 @@ export default function BarterChatPage() {
 
   useEffect(() => {
     if (!barterId) return;
+
     (async () => {
-      const data = await getBarterById(barterId as string);
-      setBarter(data);
+      const barterData = await getBarterById(barterId as string);
+      const reviewData = await getReviewsByBarterId(barterId as string);
+      setBarter(barterData);
+      setReviews(reviewData);
       setLoadingBarter(false);
     })();
   }, [barterId]);
@@ -54,7 +60,7 @@ export default function BarterChatPage() {
 
   return (
     <div className="p-4 max-w-4xl mx-auto h-[90vh] flex flex-col gap-4">
-      {/* Barter summary card */}
+      {/* Barter Summary */}
       {loadingBarter ? (
         <p className="text-gray-500 text-sm">Loading barter details...</p>
       ) : barter ? (
@@ -63,11 +69,10 @@ export default function BarterChatPage() {
         <p className="text-red-500 text-sm">Barter not found.</p>
       )}
 
-      {/* Chat area */}
+      {/* Chat Section */}
       <div className="flex-1 flex flex-col border rounded bg-white p-4 overflow-hidden">
         <h2 className="text-lg font-semibold text-indigo-700 mb-2">Chat</h2>
 
-        {/* Messages */}
         <div className="flex-1 overflow-y-auto space-y-2 pr-2">
           {chatLoading ? (
             <p className="text-sm text-gray-500">Loading messages...</p>
@@ -85,12 +90,10 @@ export default function BarterChatPage() {
           )}
         </div>
 
-        {/* Typing indicator */}
         {isTyping && (
           <p className="text-xs text-gray-500 mt-2 italic">Typing...</p>
         )}
 
-        {/* Input section */}
         <div className="mt-4 pt-2 border-t">
           <div className="flex gap-2 items-end">
             <textarea
@@ -105,9 +108,6 @@ export default function BarterChatPage() {
               placeholder="Type a message... (Enter to send, Shift+Enter for newline)"
               className="flex-1 border rounded p-2 text-sm resize-none"
             />
-
-            {/* Emoji picker placeholder button */}
-
             <button
               onClick={handleSend}
               className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"

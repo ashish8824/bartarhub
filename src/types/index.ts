@@ -48,3 +48,17 @@ export interface UserProfile {
   bio: string;
   avatar_url: string;
 }
+
+// types/index.ts
+export interface Review {
+  id: string;
+  barter_id: string;
+  reviewer_id: string;
+  rating: number;
+  comment?: string;
+  created_at: string;
+  reviewer?: {
+    username: string;
+    avatar_url?: string;
+  };
+}
