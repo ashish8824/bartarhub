@@ -99,13 +99,8 @@ export default function ProfilePage() {
   };
 
   const handlePasswordReset = async () => {
-    if (!user) {
-      toast.error("User not authenticated");
-      return;
-    }
-
-    if (!user.email) {
-      toast.error("User email not found.");
+    if (!user || !user.email) {
+      toast.error("User or email not available");
       return;
     }
 
