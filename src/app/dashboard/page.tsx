@@ -3,7 +3,7 @@
 import { useUser } from "@/hooks/useUser";
 import { useFeedSkills } from "@/hooks/useSkills";
 import SkillCard from "@/components/SkillCard";
-import RequestBarterModal from "@/components/RequestBarterModal"; // ✅ Make sure this path is correct
+import RequestBarterModal from "@/components/RequestBarterModal";
 import { Skill } from "@/types";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ export default function DashboardPage() {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
 
   const handleBarterRequest = (skill: Skill) => {
-    setSelectedSkill(skill); // ✅ Open modal
+    setSelectedSkill(skill);
   };
 
   const handleModalClose = () => {
@@ -52,6 +52,7 @@ export default function DashboardPage() {
         open={!!selectedSkill}
         onClose={handleModalClose}
         skill={selectedSkill}
+        currentUserId={user?.id || ""} {/* ✅ FIXED: pass required prop */}
       />
     </div>
   );
