@@ -1,3 +1,5 @@
+import { Message } from "@/types";
+
 type Props = {
   message: Message;
   isSender: boolean;
