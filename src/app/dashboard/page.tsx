@@ -47,12 +47,12 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {/* ✅ Request Barter Modal */}
+      {/* ✅ Request Barter Modal with required props */}
       <RequestBarterModal
         open={!!selectedSkill}
         onClose={handleModalClose}
         skill={selectedSkill}
-        currentUserId={user?.id || ""} {/* ✅ FIXED: pass required prop */}
+        currentUserId={user?.id || ""}
       />
     </div>
   );
