@@ -41,12 +41,18 @@ export default function ReviewPage() {
   }, [user, barterId, router]);
 
   const handleSubmit = async () => {
+    if (!user) {
+      toast.error("User not authenticated");
+      return;
+    }
+
     if (!rating) {
       toast.error("Please select a rating");
       return;
     }
 
     setLoading(true);
+
     const { error } = await submitReview(
       barterId as string,
       user.id,
