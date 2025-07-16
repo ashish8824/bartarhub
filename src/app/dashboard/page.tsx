@@ -4,7 +4,6 @@ import { useUser } from "@/hooks/useUser";
 import { useFeedSkills } from "@/hooks/useSkills";
 import SkillCard from "@/components/SkillCard";
 import RequestBarterModal from "@/components/RequestBarterModal"; // ✅ Make sure this path is correct
-import toast from "react-hot-toast";
 import { Skill } from "@/types";
 import { useState } from "react";
 

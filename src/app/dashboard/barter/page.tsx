@@ -5,7 +5,6 @@ import { useInboxBarters, useSentBarters } from "@/hooks/useBarters";
 import { updateBarterStatus } from "@/services/barterService";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Barter } from "@/types";
 import { useRouter } from "next/navigation";
 
 export default function BarterPage() {
@@ -51,20 +50,17 @@ export default function BarterPage() {
   const allBarters = view === "inbox" ? inboxBarters : sentBarters;
   const isLoading = view === "inbox" ? inboxLoading : sentLoading;
 
-  // Apply status filter
   const filteredBarters =
     statusFilter === "all"
       ? allBarters
       : allBarters.filter((barter) => barter.status === statusFilter);
 
-  // Apply sorting
   const sortedBarters = [...filteredBarters].sort((a, b) => {
     return sortOrder === "desc"
       ? new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       : new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
   });
 
-  // Pagination
   const totalPages = Math.ceil(sortedBarters.length / pageSize);
   const startIdx = (currentPage - 1) * pageSize;
   const paginatedBarters = sortedBarters.slice(startIdx, startIdx + pageSize);
@@ -81,7 +77,6 @@ export default function BarterPage() {
 
       {/* Top Controls */}
       <div className="flex flex-wrap gap-4 mb-6 items-center">
-        {/* Toggle View */}
         <div className="flex gap-2">
           <button
             onClick={() => setView("inbox")}
@@ -101,13 +96,19 @@ export default function BarterPage() {
           </button>
         </div>
 
-        {/* Filter by status */}
         <div>
           <label className="text-sm mr-2">Status:</label>
           <select
             value={statusFilter}
-            onChange={(e) => {
-              setStatusFilter(e.target.value as any);
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              setStatusFilter(
+                e.target.value as
+                  | "all"
+                  | "pending"
+                  | "in_progress"
+                  | "completed"
+                  | "declined"
+              );
               setCurrentPage(1);
             }}
             className="border rounded px-2 py-1 text-sm"
@@ -120,12 +121,11 @@ export default function BarterPage() {
           </select>
         </div>
 
-        {/* Sort Order */}
         <div>
           <label className="text-sm mr-2">Sort:</label>
           <select
             value={sortOrder}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
               setSortOrder(e.target.value as "asc" | "desc");
               setCurrentPage(1);
             }}
@@ -160,7 +160,7 @@ export default function BarterPage() {
                     wants to barter
                   </p>
                   <p className="text-sm text-gray-700 italic">
-                    "{barter.message}"
+                    &quot;{barter.message}&quot;
                   </p>
                 </div>
                 <span
@@ -209,7 +209,6 @@ export default function BarterPage() {
                   </button>
                 )}
 
-                {/* View Barter Button (always shown) */}
                 <a
                   href={`/dashboard/barter/${barter.id}`}
                   className="bg-indigo-600 text-white px-4 pt-5 rounded text-sm hover:bg-indigo-700 inline-block"
@@ -222,7 +221,6 @@ export default function BarterPage() {
         </div>
       )}
 
-      {/* Pagination Controls */}
       {totalPages > 1 && (
         <div className="flex justify-center mt-6 gap-4 items-center">
           <button

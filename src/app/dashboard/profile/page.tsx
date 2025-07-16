@@ -26,8 +26,6 @@ export default function ProfilePage() {
     register,
     handleSubmit,
     setValue,
-    reset,
-    watch,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -94,18 +92,6 @@ export default function ProfilePage() {
     }
 
     setLoading(false);
-  };
-
-  const handleDeleteAccount = async () => {
-    if (!confirm("Are you sure you want to delete your account?")) return;
-
-    const { error } = await supabase.auth.admin.deleteUser(user.id);
-    if (error) {
-      console.error(error);
-      toast.error("Failed to delete account");
-    } else {
-      toast.success("Account deleted");
-    }
   };
 
   const handlePasswordReset = async () => {
@@ -227,7 +213,8 @@ export default function ProfilePage() {
       {activeTab === "password" && (
         <div className="bg-white p-6 shadow rounded space-y-4">
           <p>
-            We'll send you an email with instructions to reset your password.
+            We&apos;ll send you an email with instructions to reset your
+            password.
           </p>
           <button
             onClick={handlePasswordReset}

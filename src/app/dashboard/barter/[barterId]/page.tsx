@@ -7,9 +7,9 @@ import ChatBubble from "@/components/ChatBubble";
 import { sendMessage } from "@/services/messageService";
 import { useEffect, useRef, useState } from "react";
 import { getBarterById } from "@/services/barterService";
-import { getReviewsByBarterId } from "@/services/reviewService";
+// import { getReviewsByBarterId } from "@/services/reviewService";
 import BarterDetailCard from "@/components/BarterDetailCard";
-import { Barter, Review } from "@/types";
+import { Barter } from "@/types";
 
 export default function BarterChatPage() {
   const { barterId } = useParams();
@@ -18,7 +18,7 @@ export default function BarterChatPage() {
 
   const [newMessage, setNewMessage] = useState("");
   const [barter, setBarter] = useState<Barter | null>(null);
-  const [reviews, setReviews] = useState<Review[]>([]);
+  // const [reviews, setReviews] = useState<Review[]>([]);
   const [loadingBarter, setLoadingBarter] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -30,9 +30,9 @@ export default function BarterChatPage() {
 
     (async () => {
       const barterData = await getBarterById(barterId as string);
-      const reviewData = await getReviewsByBarterId(barterId as string);
+      // const reviewData = await getReviewsByBarterId(barterId as string);
       setBarter(barterData);
-      setReviews(reviewData);
+      // setReviews(reviewData);
       setLoadingBarter(false);
     })();
   }, [barterId]);
