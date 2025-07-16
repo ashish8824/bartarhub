@@ -4,9 +4,8 @@ const nextConfig = {
     domains: ["utkctcdndvlqlavdpkif.supabase.co"],
   },
   eslint: {
-    // ✅ Skip ESLint errors during production builds
     ignoreDuringBuilds: true,
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
