@@ -28,6 +28,7 @@ export interface Barter {
   message: string;
   created_at: string;
   updated_at: string;
+
   sender_profile?: {
     username: string;
     avatar_url: string | null;
@@ -36,6 +37,10 @@ export interface Barter {
     username: string;
     avatar_url: string | null;
   };
+
+  // ✅ Add these two fields:
+  requested_skill?: Skill;
+  offered_skill?: Skill | null;
 }
 
 export interface Message {
