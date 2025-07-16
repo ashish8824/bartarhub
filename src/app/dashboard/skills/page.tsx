@@ -6,6 +6,7 @@ import { useSkills } from "@/hooks/useSkills";
 import SkillCard from "@/components/SkillCard";
 import { addSkill, deleteSkill, updateSkill } from "@/services/skillService";
 import toast from "react-hot-toast";
+import type { Skill } from "@/types"; // ✅ FIXED
 
 export default function SkillsPage() {
   const { user, loading: userLoading } = useUser();
@@ -47,7 +48,6 @@ export default function SkillsPage() {
     try {
       setAdding(true);
       const createdSkill = await addSkill(newSkill);
-      // Ensure createdSkill is either an array or a single object
       const skillData = Array.isArray(createdSkill)
         ? createdSkill[0]
         : createdSkill;
@@ -79,7 +79,6 @@ export default function SkillsPage() {
     }
   };
 
-  // Inside your component...
   const handleUpdate = async (updatedSkill: Skill) => {
     try {
       const newSkill = await updateSkill(updatedSkill);
@@ -143,11 +142,7 @@ export default function SkillsPage() {
               key={skill.id}
               skill={skill}
               onDelete={handleDelete}
-              onUpdate={(updated) =>
-                setSkills((prev) =>
-                  prev.map((s) => (s.id === updated.id ? updated : s))
-                )
-              }
+              onUpdate={handleUpdate} // ✅ FIXED: Using reusable update function
             />
           ))}
         </div>

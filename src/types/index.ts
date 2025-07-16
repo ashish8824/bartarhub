@@ -1,11 +1,20 @@
-export interface Skill {
+// export interface Skill {
+//   id: string;
+//   user_id: string;
+//   title: string;
+//   description: string;
+//   type: "OFFER" | "REQUEST"; // Must match Supabase enum
+//   created_at: string;
+// }
+
+// src/types/index.ts
+export type Skill = {
   id: string;
   user_id: string;
   title: string;
-  description: string;
-  type: "OFFER" | "REQUEST"; // Must match Supabase enum
-  created_at: string;
-}
+  description?: string;
+  type: "OFFER" | "REQUEST";
+};
 
 export type BarterStatus = "pending" | "in_progress" | "completed" | "declined";
 
