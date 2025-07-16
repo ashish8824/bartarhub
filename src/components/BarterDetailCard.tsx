@@ -30,10 +30,11 @@ export default function BarterDetailCard({ barter }: Props) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Sender */}
         <div className="flex items-center gap-2">
           <UserAvatar
-            src={barter.sender_profile?.avatar_url}
-            alt={barter.sender_profile?.username}
+            src={barter.sender_profile?.avatar_url ?? undefined}
+            alt={barter.sender_profile?.username ?? "Sender"}
           />
           <div>
             <p className="text-sm text-gray-600">Sender</p>
@@ -43,10 +44,11 @@ export default function BarterDetailCard({ barter }: Props) {
           </div>
         </div>
 
+        {/* Receiver */}
         <div className="flex items-center gap-2">
           <UserAvatar
-            src={barter.receiver_profile?.avatar_url}
-            alt={barter.receiver_profile?.username}
+            src={barter.receiver_profile?.avatar_url ?? undefined}
+            alt={barter.receiver_profile?.username ?? "Receiver"}
           />
           <div>
             <p className="text-sm text-gray-600">Receiver</p>
@@ -56,6 +58,7 @@ export default function BarterDetailCard({ barter }: Props) {
           </div>
         </div>
 
+        {/* Requested Skill */}
         <div>
           <p className="text-sm text-gray-600">Requested Skill</p>
           <p className="text-sm font-medium text-gray-800">
@@ -63,6 +66,7 @@ export default function BarterDetailCard({ barter }: Props) {
           </p>
         </div>
 
+        {/* Offered Skill */}
         {barter.offered_skill_id && (
           <div>
             <p className="text-sm text-gray-600">Offered Skill</p>
