@@ -38,6 +38,11 @@ export default function ProfilePage() {
   }, [user, setValue]);
 
   const uploadAvatar = async (file: File): Promise<string | null> => {
+    if (!user) {
+      toast.error("User not authenticated");
+      return null;
+    }
+
     const filePath = `${user.id}/${Date.now()}-${file.name}`;
     const { error: uploadError } = await supabase.storage
       .from("avatars")
@@ -59,8 +64,12 @@ export default function ProfilePage() {
   };
 
   const onSubmit = async (data: FormValues) => {
-    setLoading(true);
+    if (!user) {
+      toast.error("User not authenticated");
+      return;
+    }
 
+    setLoading(true);
     let newAvatarUrl = avatarUrl;
 
     if (data.avatar && data.avatar.length > 0) {
@@ -95,6 +104,11 @@ export default function ProfilePage() {
   };
 
   const handlePasswordReset = async () => {
+    if (!user) {
+      toast.error("User not authenticated");
+      return;
+    }
+
     const { error } = await supabase.auth.resetPasswordForEmail(user.email);
     if (error) {
       console.error(error);
@@ -103,6 +117,10 @@ export default function ProfilePage() {
       toast.success("Password reset email sent");
     }
   };
+
+  if (!user) {
+    return <div className="p-8 text-center text-gray-600">Loading user...</div>;
+  }
 
   return (
     <div className="p-8 max-w-3xl mx-auto">
@@ -147,9 +165,9 @@ export default function ProfilePage() {
               <div className="w-full h-full bg-gray-300 rounded-full" />
             )}
           </div>
-          <p className="text-gray-600">{user?.email}</p>
-          <p className="text-xl font-semibold">{user?.username}</p>
-          <p className="text-gray-500">{user?.bio}</p>
+          <p className="text-gray-600">{user.email}</p>
+          <p className="text-xl font-semibold">{user.username}</p>
+          <p className="text-gray-500">{user.bio}</p>
         </div>
       )}
 
