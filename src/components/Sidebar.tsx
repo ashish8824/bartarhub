@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  Layers,
-  MessageCircle,
-  User,
-  LogOut,
-} from "lucide-react";
+import { LayoutDashboard, Layers, MessageCircle, User } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },

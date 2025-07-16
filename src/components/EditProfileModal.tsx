@@ -48,7 +48,7 @@ export default function EditProfileModal({ open, onClose, user }: Props) {
     }
   };
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: Record<string, unknown>) => {
     let avatar_url = user.avatar_url;
 
     if (avatarFile) {
@@ -77,8 +77,6 @@ export default function EditProfileModal({ open, onClose, user }: Props) {
       avatar_url,
     });
 
-    console.log("success=========", success);
-
     if (success) {
       toast.success("Profile updated!");
       onClose();
@@ -95,7 +93,6 @@ export default function EditProfileModal({ open, onClose, user }: Props) {
         <h2 className="text-lg font-semibold text-indigo-700">Edit Profile</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Avatar preview */}
           <div className="flex items-center gap-4">
             {previewUrl ? (
               <Image
@@ -124,7 +121,6 @@ export default function EditProfileModal({ open, onClose, user }: Props) {
             />
           </div>
 
-          {/* Username */}
           <div>
             <label className="text-sm font-medium">Username</label>
             <input
@@ -139,7 +135,6 @@ export default function EditProfileModal({ open, onClose, user }: Props) {
             )}
           </div>
 
-          {/* Bio */}
           <div>
             <label className="text-sm font-medium">Bio</label>
             <textarea

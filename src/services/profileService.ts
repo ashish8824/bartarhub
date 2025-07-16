@@ -1,7 +1,10 @@
 import { supabase } from "@/lib/supabase";
 
-export async function updateUserProfile(userId: string, values: any) {
-  const { error, data } = await supabase
+export async function updateUserProfile(
+  userId: string,
+  values: Record<string, unknown>
+) {
+  const { error } = await supabase
     .from("users")
     .update(values)
     .eq("id", userId);

@@ -1,8 +1,6 @@
 import { Trash2, Pencil, Handshake } from "lucide-react";
 import { Skill } from "@/types";
 import { useState } from "react";
-import { useUI } from "@/context/UiContext";
-import RequestBarterModal from "./RequestBarterModal";
 
 type Props = {
   skill: Skill;
@@ -22,7 +20,6 @@ export default function SkillCard({
   const [description, setDescription] = useState(skill.description || "");
   const [type, setType] = useState<"OFFER" | "REQUEST">(skill.type);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const { openModal } = useUI();
 
   const handleUpdate = () => {
     const updated = {
@@ -31,12 +28,12 @@ export default function SkillCard({
       description,
       type,
     };
-    onUpdate?.(updated); // only call if defined
+    onUpdate?.(updated);
     setIsEditing(false);
   };
 
   const handleDelete = () => {
-    onDelete?.(skill.id); // only call if defined
+    onDelete?.(skill.id);
     setShowDeleteConfirm(false);
   };
 
@@ -96,7 +93,6 @@ export default function SkillCard({
             )}
           </div>
 
-          {/* Request Barter button for Feed only */}
           {onRequestBarter && isFeed && (
             <button
               onClick={() => onRequestBarter(skill)}
@@ -107,7 +103,6 @@ export default function SkillCard({
             </button>
           )}
 
-          {/* Action Icons for owner view */}
           {!isFeed && (
             <div className="absolute top-2 right-2 flex gap-2">
               <button
@@ -129,7 +124,6 @@ export default function SkillCard({
         </>
       )}
 
-      {/* Confirm Delete */}
       {showDeleteConfirm && (
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10">
           <div className="bg-white p-4 rounded shadow-lg text-center space-y-3 w-72">
