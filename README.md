@@ -7,10 +7,15 @@
 
 ## 📸 Screenshots
 
-> ![image](https://github.com/user-attachments/assets/2c27e10e-7f03-4104-9592-b07e1a4859f8)
-> ![image](https://github.com/user-attachments/assets/066b0d99-bc02-4619-8caa-930f5526c7d9)
-> ![image](https://github.com/user-attachments/assets/a8e42200-1286-41da-abdc-ddb5c85ee53b)
-> <img width="1904" height="1024" alt="image" src="https://github.com/user-attachments/assets/c20b670c-0519-4dc0-a4ca-4d415a7a5762" />
+ <img width="1904" height="1024" alt="image" src="https://github.com/user-attachments/assets/c20b670c-0519-4dc0-a4ca-4d415a7a5762" />
+<img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/17838f1d-f632-45ef-ad05-e2497ec1a448" />
+<img width="1919" height="1005" alt="image" src="https://github.com/user-attachments/assets/dea6c7b5-bbb4-4d5f-8ad0-72f80875ea13" />
+<img width="1919" height="1017" alt="image" src="https://github.com/user-attachments/assets/32adb273-7324-4a24-99c3-524370217b5e" />
+<img width="1919" height="1012" alt="image" src="https://github.com/user-attachments/assets/8b7cd967-fd72-4c58-948c-6a19aa1d21df" />
+<img width="1913" height="1015" alt="image" src="https://github.com/user-attachments/assets/df6dd9a3-4efd-4b2c-9677-d59e6ed7bb3a" />
+<img width="1919" height="1012" alt="image" src="https://github.com/user-attachments/assets/97a179e4-415f-4448-b4f0-77854714dad9" />
+
+
 
 
 ## 📦 Features
