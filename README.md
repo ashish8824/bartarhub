@@ -4,11 +4,20 @@
 
 ---
 
+
+## 📸 Screenshots
+
+> ![image](https://github.com/user-attachments/assets/2c27e10e-7f03-4104-9592-b07e1a4859f8)
+> ![image](https://github.com/user-attachments/assets/066b0d99-bc02-4619-8caa-930f5526c7d9)
+> ![image](https://github.com/user-attachments/assets/a8e42200-1286-41da-abdc-ddb5c85ee53b)
+> <img width="1904" height="1024" alt="image" src="https://github.com/user-attachments/assets/c20b670c-0519-4dc0-a4ca-4d415a7a5762" />
+
+
 ## 📦 Features
 
 - 🔐 **Authentication** (Sign up, Login, Password Recovery via Supabase Auth)
 - 📋 **Skill Management**: Add, update, and delete skills you offer or need
-- 🧾 **Skill Feed**: Browse other users’ skills (filtering your own out)
+- 🧾 **Skill Feed**: Browse other users’ skills (filtering your own out)  
 - 💬 **Barter Requests**: Send and manage barter requests between users
 - 💡 **Chat**: Real-time messaging between barter participants
 - ✍️ **Reviews**: Leave feedback after completing a barter
